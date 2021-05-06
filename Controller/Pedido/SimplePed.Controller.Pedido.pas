@@ -3,9 +3,11 @@ unit SimplePed.Controller.Pedido;
 interface
 
 uses
-  SimplePed.Controller.Pedido.Interfaces, Data.DB,
-  SimplePed.Model.Entidade.Pedido, SimplePed.Model.Pedido.Interfaces,
-  System.Generics.Collections;
+  Data.DB,
+  System.Generics.Collections,
+  SimplePed.Controller.Pedido.Interfaces,
+  SimplePed.Model.Entidade.Pedido,
+  SimplePed.Model.Pedido.Interfaces;
 
 Type
   TControllerPedido = class(TInterfacedObject, iControllerPedido)
@@ -24,14 +26,15 @@ Type
     function Insert: iControllerPedido;
     function Delete: iControllerPedido;
     function Update: iControllerPedido;
-    function Entidade: TPEDIDO;
+    function _This: TPEDIDO;
     function Itens : iControllerPedidoItens;
   end;
 
 implementation
 
 uses
-  SimplesPed.Model, SimplePed.Controller.PedidoItens;
+  SimplePed.Model,
+  SimplePed.Controller.PedidoItens;
 
 { TControllerPedido }
 
@@ -49,7 +52,7 @@ end;
 
 constructor TControllerPedido.Create;
 begin
-  FModel := TModel.New.Pedido;
+  FModel := TSimplePedModel.New.Pedido;
   FPedidoItens := TControllerPedidoItens.New;
 end;
 
@@ -80,7 +83,7 @@ begin
   inherited;
 end;
 
-function TControllerPedido.Entidade: TPEDIDO;
+function TControllerPedido._This: TPEDIDO;
 begin
   Result := FModel.Entidade;
 end;

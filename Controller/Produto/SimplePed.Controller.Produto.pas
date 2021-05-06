@@ -25,13 +25,13 @@ Type
     function Insert: iControllerProduto;
     function Delete: iControllerProduto;
     function Update: iControllerProduto;
-    function Entidade: TPRODUTO;
+    function _This: TPRODUTO;
   end;
 
 implementation
 
 uses
-  SimplesPed.Model, System.SysUtils;
+  SimplePed.Model, System.SysUtils;
 
 { TControllerProduto }
 
@@ -67,7 +67,7 @@ end;
 
 constructor TControllerProduto.Create;
 begin
-  FModel := TModel.New.Produto;
+  FModel := TSimplePedModel.New.Produto;
 end;
 
 function TControllerProduto.DataSource(
@@ -95,7 +95,7 @@ begin
   inherited;
 end;
 
-function TControllerProduto.Entidade: TPRODUTO;
+function TControllerProduto._This: TPRODUTO;
 begin
   Result := FModel.Entidade;
 end;

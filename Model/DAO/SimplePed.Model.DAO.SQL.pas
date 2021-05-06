@@ -68,6 +68,11 @@ end;
 
 destructor TModelDAO<T>.Destroy;
 begin
+  if Assigned(FThis) then
+    FThis.Free;
+
+  if Assigned(FNewThis) then
+    FNewThis.Free;
 
   inherited;
 end;

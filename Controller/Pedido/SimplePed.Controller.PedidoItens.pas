@@ -26,14 +26,14 @@ Type
     function Insert: iControllerPedidoItens;
     function Delete: iControllerPedidoItens;
     function Update: iControllerPedidoItens;
-    function Entidade: TPEDIDOITENS;
+    function _This: TPEDIDOITENS;
   end;
 
 implementation
 
 uses
   System.SysUtils,
-  SimplesPed.Model;
+  SimplePed.Model;
 
 { TControllerPedidoItens }
 
@@ -74,7 +74,7 @@ end;
 
 constructor TControllerPedidoItens.Create;
 begin
-  FModel := TModel.New.PedidoItens;
+  FModel := TSimplePedModel.New.PedidoItens;
 end;
 
 function TControllerPedidoItens.DataSource(aDataSource: TDataSource)
@@ -100,7 +100,7 @@ begin
   inherited;
 end;
 
-function TControllerPedidoItens.Entidade: TPEDIDOITENS;
+function TControllerPedidoItens._This: TPEDIDOITENS;
 begin
   Result := FModel._This;
 end;

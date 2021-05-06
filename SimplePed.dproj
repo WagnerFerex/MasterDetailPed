@@ -115,11 +115,11 @@
         <DCCReference Include="Model\Entidades\SimplePed.Model.Entidade.PedidoItens.pas"/>
         <DCCReference Include="Model\Produto\SimplePed.Model.Produto.pas"/>
         <DCCReference Include="Model\Produto\SimplePed.Model.Produto.Interfaces.pas"/>
-        <DCCReference Include="Model\SimplesPed.Model.pas"/>
-        <DCCReference Include="Model\SimplesPed.Model.Interfaces.pas"/>
+        <DCCReference Include="Model\SimplePed.Model.pas"/>
+        <DCCReference Include="Model\SimplePed.Model.Interfaces.pas"/>
         <DCCReference Include="Controller\Produto\SimplePed.Controller.Produto.pas"/>
         <DCCReference Include="Controller\Produto\SimplePed.Controller.Produto.Interfaces.pas"/>
-        <DCCReference Include="Controller\SimplesPed.Controller.pas"/>
+        <DCCReference Include="Controller\SimplePed.Controller.pas"/>
         <DCCReference Include="Controller\SimplePed.Controller.Interfaces.pas"/>
         <DCCReference Include="Model\Pedido\SimplePed.Model.Pedido.pas"/>
         <DCCReference Include="Model\Pedido\SimplePed.Model.Pedido.Interfaces.pas"/>

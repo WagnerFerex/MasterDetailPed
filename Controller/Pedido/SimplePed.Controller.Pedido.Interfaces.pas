@@ -16,8 +16,8 @@ type
     function Insert : iControllerPedido;
     function Delete : iControllerPedido;
     function Update : iControllerPedido;
-    function Entidade : TPEDIDO;
-    function ITENS : iControllerPedidoItens;
+    function _This : TPEDIDO;
+    function Itens : iControllerPedidoItens;
   end;
 
   iControllerPedidoItens = interface
@@ -28,7 +28,7 @@ type
     function Insert : iControllerPedidoItens;
     function Delete : iControllerPedidoItens;
     function Update : iControllerPedidoItens;
-    function Entidade : TPEDIDOITENS;
+    function _This : TPEDIDOITENS;
   end;
 
 implementation

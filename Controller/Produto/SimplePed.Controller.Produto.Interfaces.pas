@@ -16,7 +16,7 @@ type
     function Insert : iControllerProduto;
     function Delete : iControllerProduto;
     function Update : iControllerProduto;
-    function Entidade : TPRODUTO;
+    function _This : TPRODUTO;
   end;
 
 implementation

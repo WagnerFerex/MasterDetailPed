@@ -26,6 +26,13 @@ type
     function Delete(aObject: T): iModelDAO<T>; overload;
   end;
 
+  iModelDAOFactory = interface
+    ['{9A087E63-5665-47AF-A188-1CE8ABC20309}']
+//    function Produto: iModelDAO<TPRODUTO>;
+//    function Pedido: iModelDAO<TPEDIDO>;
+//    function PedidoItens: iModelDAO<TPEDIDOITENS>;
+  end;
+
 implementation
 
 end.
