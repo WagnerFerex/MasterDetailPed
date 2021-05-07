@@ -28,6 +28,7 @@ type
     function Insert : iControllerPedidoItens;
     function Delete : iControllerPedidoItens;
     function Update : iControllerPedidoItens;
+    function DataSet : TDataSet;
     function _This : TPEDIDOITENS;
   end;
 

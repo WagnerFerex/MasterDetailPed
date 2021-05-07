@@ -15,7 +15,6 @@ Type
     FEntidade : TPEDIDO;
     FDAO : iModelDAO<TPEDIDO>;
     FDataSource : TDataSource;
-    FPedidoItens : iModelPedidoItens;
   public
     constructor Create;
     destructor Destroy; override;
@@ -24,20 +23,19 @@ Type
     function Entidade (aEntidade : TPEDIDO) : iModelPedido; overload;
     function DAO: iModelDAO<TPEDIDO>;
     function DataSource(aDataSource: TDataSource): iModelPedido;
-    function ITENS : iModelPedidoItens;
   end;
 
 implementation
 
 { TModelPedido }
 
-uses System.SysUtils, SimplePed.Model.PedidoItens;
+uses
+  System.SysUtils;
 
 constructor TModelPedido.Create;
 begin
   FEntidade := TPEDIDO.Create;
   FDAO := TModelDAO<TPEDIDO>.New;
-  FPedidoItens := TModelPedidoItens.New;
 end;
 
 function TModelPedido.DAO: iModelDAO<TPEDIDO>;
@@ -62,11 +60,6 @@ function TModelPedido.Entidade(aEntidade: TPEDIDO): iModelPedido;
 begin
   Result := Self;
   FEntidade := aEntidade;
-end;
-
-function TModelPedido.Itens: iModelPedidoItens;
-begin
-  Result := FPedidoItens;
 end;
 
 function TModelPedido.Entidade: TPEDIDO;

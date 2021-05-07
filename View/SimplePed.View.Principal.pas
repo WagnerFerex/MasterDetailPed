@@ -101,6 +101,11 @@ begin
   FController.Pedido.Itens._This.QUANTIDADE := StrToCurr(Edit1.Text);
   FController.Pedido.Itens._This.VALORTOTAL := (FController.Pedido.Itens._This.VALORUNITARIO * FController.Pedido.Itens._This.QUANTIDADE);
   FController.Pedido.Itens.Insert.Buscar(DataSource2.DataSet.FieldByName('ID_PEDIDO').AsInteger);
+
+
+
+
+  FController.Pedido.Itens.DataSet.InsertRecord([]);
 end;
 
 procedure TForm6.Button6Click(Sender: TObject);

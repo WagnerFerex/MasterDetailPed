@@ -12,6 +12,7 @@ type
   iModelDAO<T: class, constructor> = interface
     ['{B08B6A07-2EF9-4D43-AF6F-9D38D9BB3678}']
     function DataSource(ADataSource: TDataSource): iModelDAO<T>;
+    function DataSet: TDataSet;
     function _This: T;
     function _NewThis: T;
     function SQL : iSimpleDAOSQLAttribute<T>;

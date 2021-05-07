@@ -3,16 +3,16 @@ unit SimplePed.Model.Interfaces;
 interface
 
 uses
-  SimplePed.Model.Produto.Interfaces,
-  SimplePed.Model.Pedido.Interfaces;
+  SimplePed.Model.Pedido.Interfaces,
+  SimplePed.Model.DAO.Interfaces,
+  SimplePed.Model.Entidade.PedidoItens;
 
 type
 
   iModel = interface
     ['{2A108A7C-FAA6-42F5-8982-B70F1F79A212}']
-    function Produto : iModelProduto;
     function Pedido : iModelPedido;
-    function PedidoItens : iModelPedidoItens;
+//    function PedidoItens : iModelDAO<TPEDIDOITENS>;
   end;
 
 implementation

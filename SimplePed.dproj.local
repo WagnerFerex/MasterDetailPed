@@ -1,4 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-  <Transactions/>
+	<Transactions/>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="Controller"/>
+    <File Path="Controller\Exceptions"/>
+    <File Path="Controller\Exceptions\SimplePed.Controller.Exceptions.pas"/>
+    <File Path="Controller\Pedido"/>
+    <File Path="Controller\Pedido\SimplePed.Controller.Pedido.Interfaces.pas"/>
+    <File Path="Controller\Pedido\SimplePed.Controller.Pedido.pas"/>
+    <File Path="Controller\Pedido\SimplePed.Controller.PedidoItens.pas"/>
+    <File Path="Controller\Produto"/>
+    <File Path="Controller\Produto\SimplePed.Controller.Produto.Interfaces.pas"/>
+    <File Path="Controller\Produto\SimplePed.Controller.Produto.pas"/>
+    <File Path="Controller\SimplePed.Controller.Interfaces.pas"/>
+    <File Path="Controller\SimplePed.Controller.pas"/>
+    <File Path="Model"/>
+    <File Path="Model\Conexao"/>
+    <File Path="Model\Conexao\SimplePed.Model.Conexao.FireDAC.pas"/>
+    <File Path="Model\Conexao\SimplePed.Model.Conexao.FireDAC.dfm"/>
+    <File Path="Model\DAO"/>
+    <File Path="Model\DAO\SimplePed.Model.DAO.Interfaces.pas"/>
+    <File Path="Model\DAO\SimplePed.Model.DAO.SQL.pas"/>
+    <File Path="Model\Entidades"/>
+    <File Path="Model\Entidades\SimplePed.Model.Entidade.CUPOM.pas"/>
+    <File Path="Model\Entidades\SimplePed.Model.Entidade.CUPOMITENS.pas"/>
+    <File Path="Model\Entidades\SimplePed.Model.Entidade.Pedido.pas"/>
+    <File Path="Model\Entidades\SimplePed.Model.Entidade.PedidoItens.pas"/>
+    <File Path="Model\Entidades\SimplePed.Model.Entidade.Produto.pas"/>
+    <File Path="Model\Exceptions"/>
+    <File Path="Model\Exceptions\SimplePed.Model.Exceptions.pas"/>
+    <File Path="Model\Pedido"/>
+    <File Path="Model\Pedido\SimplePed.Model.Pedido.Interfaces.pas"/>
+    <File Path="Model\Pedido\SimplePed.Model.Pedido.pas"/>
+    <File Path="Model\SimplePed.Model.Interfaces.pas"/>
+    <File Path="Model\SimplePed.Model.pas"/>
+    <File Path="View"/>
+    <File Path="View\SimplePed.View.Principal.pas"/>
+    <File Path="View\SimplePed.View.Principal.dfm"/>
+  </ProjectSortOrder>
 </BorlandProject>

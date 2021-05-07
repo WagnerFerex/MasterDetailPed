@@ -18,12 +18,14 @@ type
     FThis : T;
     FNewThis : T;
     FList : TObjectList<T>;
+    FQueryFireDAC: iSimpleQuery;
     FSimpleDAO : iSimpleDAO<T>;
   public
     constructor Create;
     destructor Destroy; override;
     class function New: iModelDAO<T>;
     function DataSource(ADataSource: TDataSource): iModelDAO<T>;
+    function DataSet: TDataSet;
     function _This: T;
     function _NewThis: T;
     function SQL : iSimpleDAOSQLAttribute<T>;
@@ -45,7 +47,13 @@ implementation
 constructor TModelDAO<T>.Create;
 begin
   FNewThis := T.Create;
-  FSimpleDAO := TSimpleDAO<T>.New(TSimpleQueryFiredac.New(TDMFireDAC.GetInstance));
+  FQueryFireDAC := TSimpleQueryFiredac.New(TDMFireDAC.GetInstance);
+  FSimpleDAO := TSimpleDAO<T>.New(FQueryFireDAC);
+end;
+
+function TModelDAO<T>.DataSet: TDataSet;
+begin
+  Result := FQueryFireDAC.DataSet;
 end;
 
 function TModelDAO<T>.DataSource(ADataSource: TDataSource): iModelDAO<T>;

@@ -113,8 +113,6 @@
         <DCCReference Include="Model\Entidades\SimplePed.Model.Entidade.Produto.pas"/>
         <DCCReference Include="Model\Entidades\SimplePed.Model.Entidade.Pedido.pas"/>
         <DCCReference Include="Model\Entidades\SimplePed.Model.Entidade.PedidoItens.pas"/>
-        <DCCReference Include="Model\Produto\SimplePed.Model.Produto.pas"/>
-        <DCCReference Include="Model\Produto\SimplePed.Model.Produto.Interfaces.pas"/>
         <DCCReference Include="Model\SimplePed.Model.pas"/>
         <DCCReference Include="Model\SimplePed.Model.Interfaces.pas"/>
         <DCCReference Include="Controller\Produto\SimplePed.Controller.Produto.pas"/>
@@ -123,7 +121,6 @@
         <DCCReference Include="Controller\SimplePed.Controller.Interfaces.pas"/>
         <DCCReference Include="Model\Pedido\SimplePed.Model.Pedido.pas"/>
         <DCCReference Include="Model\Pedido\SimplePed.Model.Pedido.Interfaces.pas"/>
-        <DCCReference Include="Model\Pedido\SimplePed.Model.PedidoItens.pas"/>
         <DCCReference Include="Controller\Pedido\SimplePed.Controller.Pedido.pas"/>
         <DCCReference Include="Controller\Pedido\SimplePed.Controller.Pedido.Interfaces.pas"/>
         <DCCReference Include="Controller\Pedido\SimplePed.Controller.PedidoItens.pas"/>
@@ -159,6 +156,12 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
+                <DeployFile LocalName="Win32\Release\SimplePed.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>SimplePed.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Win32\Debug\SimplePed.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>SimplePed.exe</RemoteName>

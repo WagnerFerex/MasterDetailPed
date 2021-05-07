@@ -3,15 +3,17 @@ unit SimplePed.Controller.Produto;
 interface
 
 uses
-  SimplePed.Controller.Produto.Interfaces, Data.DB,
-  SimplePed.Model.Entidade.Produto, SimplePed.Model.Produto.Interfaces,
-  System.Generics.Collections;
+  System.Generics.Collections,
+  Data.DB,
+  SimplePed.Model.DAO.Interfaces,
+  SimplePed.Model.DAO.SQL,
+  SimplePed.Model.Entidade.Produto,
+  SimplePed.Controller.Produto.Interfaces;
 
 Type
   TControllerProduto = class(TInterfacedObject, iControllerProduto)
   private
-    FModel : iModelProduto;
-    FDataSource : TDataSource;
+    FDAO: iModelDAO<TPRODUTO>;
     FList : TObjectList<TPRODUTO>;
     FEntidade : TPRODUTO;
   public
@@ -42,7 +44,7 @@ begin
   if Assigned(FList) then
     FList.Free;
 
-  FList := FModel.DAO.Find;
+  FList := FDAO.Find;
 end;
 
 function TControllerProduto.Buscar(aId: Integer): iControllerProduto;
@@ -52,7 +54,7 @@ begin
   if Assigned(FEntidade) then
     FEntidade.Free;
 
-  FEntidade := FModel.DAO.Find(aId);
+  FEntidade := FDAO.Find(aId);
 end;
 
 function TControllerProduto.Buscar(aDescricao: String): iControllerProduto;
@@ -62,26 +64,24 @@ begin
   if Assigned(FList) then
     FList.Free;
 
-  FList := FModel.DAO.Find('DESCRICAO = ' + QuotedStr(aDescricao));
+  FList := FDAO.Find('DESCRICAO = ' + QuotedStr(aDescricao));
 end;
 
 constructor TControllerProduto.Create;
 begin
-  FModel := TSimplePedModel.New.Produto;
+  FDAO := TModelDAO<TPRODUTO>.New;
 end;
 
-function TControllerProduto.DataSource(
-  aDataSource: TDataSource): iControllerProduto;
+function TControllerProduto.DataSource(aDataSource: TDataSource): iControllerProduto;
 begin
   Result := Self;
-  FDataSource := aDataSource;
-  FModel.DataSource(FDataSource);
+  FDAO.DataSource(aDataSource);
 end;
 
 function TControllerProduto.Delete: iControllerProduto;
 begin
   Result := Self;
-  FModel.DAO.Delete(FModel.Entidade);
+  FDAO.Delete;
 end;
 
 destructor TControllerProduto.Destroy;
@@ -97,13 +97,13 @@ end;
 
 function TControllerProduto._This: TPRODUTO;
 begin
-  Result := FModel.Entidade;
+  Result := FDAO._This;
 end;
 
 function TControllerProduto.Insert: iControllerProduto;
 begin
   Result := Self;
-  FModel.DAO.Insert(FModel.Entidade);
+  FDAO.Insert(FDAO._This);
 end;
 
 class function TControllerProduto.New: iControllerProduto;
@@ -114,7 +114,7 @@ end;
 function TControllerProduto.Update: iControllerProduto;
 begin
   Result := Self;
-  FModel.DAO.Update(FModel.Entidade);
+  FDAO.Update(FDAO._This);
 end;
 
 end.

@@ -7,12 +7,13 @@ uses
   System.Generics.Collections,
   SimplePed.Controller.Pedido.Interfaces,
   SimplePed.Model.Entidade.Pedido,
-  SimplePed.Model.Pedido.Interfaces;
+  SimplePed.Model.Pedido.Interfaces,
+  SimplePed.Model.DAO.Interfaces;
 
 Type
   TControllerPedido = class(TInterfacedObject, iControllerPedido)
   private
-    FModel : iModelPedido;
+    FDAO: iModelDAO<TPEDIDO>;
     FDataSource : TDataSource;
     FList : TObjectList<TPEDIDO>;
     FPedidoItens : iControllerPedidoItens;
@@ -34,6 +35,7 @@ implementation
 
 uses
   SimplePed.Model,
+  SimplePed.Model.DAO.SQL,
   SimplePed.Controller.PedidoItens;
 
 { TControllerPedido }
@@ -46,13 +48,13 @@ begin
     FList.Free;
 
   FDataSource.DataSet.DisableControls;
-  FList := FModel.DAO.Find;
+  FList := FDAO.Find;
   FDataSource.DataSet.EnableControls;
 end;
 
 constructor TControllerPedido.Create;
 begin
-  FModel := TSimplePedModel.New.Pedido;
+  FDAO := TModelDAO<TPEDIDO>.New;
   FPedidoItens := TControllerPedidoItens.New;
 end;
 
@@ -66,14 +68,14 @@ function TControllerPedido.DataSource(
 begin
   Result := Self;
   FDataSource := aDataSource;
-  FModel.DataSource(FDataSource);
+  FDAO.DataSource(FDataSource);
   FDataSource.OnDataChange := DataChance;
 end;
 
 function TControllerPedido.Delete: iControllerPedido;
 begin
   Result := Self;
-  FModel.DAO.Delete(FModel.Entidade);
+  FDAO.Delete(FDAO._This);
 end;
 
 destructor TControllerPedido.Destroy;
@@ -85,13 +87,13 @@ end;
 
 function TControllerPedido._This: TPEDIDO;
 begin
-  Result := FModel.Entidade;
+  Result := FDAO._This;
 end;
 
 function TControllerPedido.Insert: iControllerPedido;
 begin
   Result := Self;
-  FModel.DAO.Insert(FModel.Entidade);
+  FDAO.Insert(FDAO._This);
 end;
 
 function TControllerPedido.Itens: iControllerPedidoItens;
@@ -107,7 +109,7 @@ end;
 function TControllerPedido.Update: iControllerPedido;
 begin
   Result := Self;
-  FModel.DAO.Update(FModel.Entidade);
+  FDAO.Update(FDAO._This);
 end;
 
 end.

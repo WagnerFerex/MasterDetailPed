@@ -4,7 +4,6 @@ interface
 
 uses
   SimplePed.Model.Interfaces,
-  SimplePed.Model.Produto.Interfaces,
   SimplePed.Model.Pedido.Interfaces;
 
 Type
@@ -14,23 +13,18 @@ Type
       constructor Create;
       destructor Destroy; override;
       class function New : iModel;
-      function Produto : iModelProduto;
       function Pedido : iModelPedido;
-      function PedidoItens : iModelPedidoItens;
   end;
 
 implementation
 
 uses
-  SimplePed.Model.Produto,
-  SimplePed.Model.Pedido,
-  SimplePed.Model.PedidoItens;
+  SimplePed.Model.Pedido;
 
 { TModel }
 
 constructor TSimplePedModel.Create;
 begin
-
 end;
 
 destructor TSimplePedModel.Destroy;
@@ -49,14 +43,5 @@ begin
   Result := TModelPedido.New;
 end;
 
-function TSimplePedModel.PedidoItens: iModelPedidoItens;
-begin
-  Result := TModelPedidoItens.New;
-end;
-
-function TSimplePedModel.Produto: iModelProduto;
-begin
-  Result := TModelProduto.New;
-end;
 
 end.
