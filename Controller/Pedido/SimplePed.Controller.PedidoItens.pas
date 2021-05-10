@@ -6,7 +6,6 @@ uses
   Data.DB,
   System.Generics.Collections,
   SimplePed.Controller.Pedido.Interfaces,
-  SimplePed.Model.Pedido.Interfaces,
   SimplePed.Model.Entidade.PedidoItens,
   SimplePed.Model.DAO.Interfaces, SimplePed.Model.DAO.SQL;
 
@@ -89,7 +88,7 @@ function TControllerPedidoItens.DataSource(aDataSource: TDataSource): iControlle
 begin
   Result := Self;
   FDataSource := aDataSource;
-  FDAO.DataSource(FDataSource);
+  FDataSource.DataSet := FDAO.DataSet;
 end;
 
 function TControllerPedidoItens.Delete: iControllerPedidoItens;

@@ -20,7 +20,12 @@ uses
   FireDAC.Stan.Option,
   FireDAC.Stan.Error,
   FireDAC.Comp.UI,
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client,
+  FireDAC.Stan.Param,
+  FireDAC.DatS,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
+  FireDAC.Comp.DataSet;
 
 
 type

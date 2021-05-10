@@ -4,27 +4,32 @@ interface
 
 uses
   SimplePed.Model.Interfaces,
-  SimplePed.Model.Pedido.Interfaces;
+  SimplePed.Model.DAO.Interfaces;
 
 Type
   TSimplePedModel = class(TInterfacedObject, iModel)
-    private
-    public
-      constructor Create;
-      destructor Destroy; override;
-      class function New : iModel;
-      function Pedido : iModelPedido;
+  private
+  public
+    constructor Create;
+    destructor Destroy; override;
+    class function New: iModel;
+    function DAO: iModelDAOFactory;
   end;
 
 implementation
 
-uses
-  SimplePed.Model.Pedido;
+{ TSimplePedModel }
 
-{ TModel }
+uses
+  SimplePed.Model.DAO.Factory;
 
 constructor TSimplePedModel.Create;
 begin
+end;
+
+function TSimplePedModel.DAO: iModelDAOFactory;
+begin
+  Result := TModelDAOFactory.New;
 end;
 
 destructor TSimplePedModel.Destroy;
@@ -37,11 +42,5 @@ class function TSimplePedModel.New: iModel;
 begin
   Result := Self.Create;
 end;
-
-function TSimplePedModel.Pedido: iModelPedido;
-begin
-  Result := TModelPedido.New;
-end;
-
 
 end.

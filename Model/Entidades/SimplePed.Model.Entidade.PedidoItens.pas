@@ -1,4 +1,4 @@
-unit SimplePed.Model.Entidade.PedidoItens;
+unit SimplePed.Model.Entidade.PEDIDOITENS;
 
 interface
 
@@ -18,15 +18,21 @@ type
   public
     [Campo('ID_PEDIDOITENS'), PK, AutoInc]
     property ID : Integer read FID write FID;
+
     [Campo('ID_PEDIDO'), FK]
     property ID_PEDIDO : Integer read FID_PEDIDO write FID_PEDIDO;
+
     [Campo('ID_PRODUTO'), FK, NotNull]
     property ID_PRODUTO : Integer read FID_PRODUTO write FID_PRODUTO;
+
     [Campo('VALORUNITARIO'), NotNull, NumberOnly]
     property VALORUNITARIO : Currency read FVALORUNITARIO write FVALORUNITARIO;
+
     [Campo('QUANTIDADE'), NotNull, NumberOnly]
     property QUANTIDADE : Currency read FQUANTIDADE write FQUANTIDADE;
-    [Campo('VALORTOTAL'), Display('Vlr. Total'), NotNull, NumberOnly]
+
+    [Display('Vlr. Total')]
+    [Campo('VALORTOTAL'), NotNull, NumberOnly]
     property VALORTOTAL : Currency read FVALORTOTAL write FVALORTOTAL;
   end;
 

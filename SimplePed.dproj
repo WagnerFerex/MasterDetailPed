@@ -5,7 +5,7 @@
         <FrameworkType>VCL</FrameworkType>
         <MainSource>SimplePed.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -110,17 +110,15 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="Model\Entidades\SimplePed.Model.Entidade.Produto.pas"/>
-        <DCCReference Include="Model\Entidades\SimplePed.Model.Entidade.Pedido.pas"/>
-        <DCCReference Include="Model\Entidades\SimplePed.Model.Entidade.PedidoItens.pas"/>
+        <DCCReference Include="Model\Entidades\SimplePed.Model.Entidade.PRODUTO.pas"/>
+        <DCCReference Include="Model\Entidades\SimplePed.Model.Entidade.PEDIDO.pas"/>
+        <DCCReference Include="Model\Entidades\SimplePed.Model.Entidade.PEDIDOITENS.pas"/>
         <DCCReference Include="Model\SimplePed.Model.pas"/>
         <DCCReference Include="Model\SimplePed.Model.Interfaces.pas"/>
         <DCCReference Include="Controller\Produto\SimplePed.Controller.Produto.pas"/>
         <DCCReference Include="Controller\Produto\SimplePed.Controller.Produto.Interfaces.pas"/>
         <DCCReference Include="Controller\SimplePed.Controller.pas"/>
         <DCCReference Include="Controller\SimplePed.Controller.Interfaces.pas"/>
-        <DCCReference Include="Model\Pedido\SimplePed.Model.Pedido.pas"/>
-        <DCCReference Include="Model\Pedido\SimplePed.Model.Pedido.Interfaces.pas"/>
         <DCCReference Include="Controller\Pedido\SimplePed.Controller.Pedido.pas"/>
         <DCCReference Include="Controller\Pedido\SimplePed.Controller.Pedido.Interfaces.pas"/>
         <DCCReference Include="Controller\Pedido\SimplePed.Controller.PedidoItens.pas"/>
@@ -128,8 +126,10 @@
         <DCCReference Include="Controller\Exceptions\SimplePed.Controller.Exceptions.pas"/>
         <DCCReference Include="Model\DAO\SimplePed.Model.DAO.Interfaces.pas"/>
         <DCCReference Include="Model\DAO\SimplePed.Model.DAO.SQL.pas"/>
-        <DCCReference Include="Model\Entidades\SimplePed.Model.Entidade.CUPOM.pas"/>
-        <DCCReference Include="Model\Entidades\SimplePed.Model.Entidade.CUPOMITENS.pas"/>
+        <DCCReference Include="Model\DAO\SimplePed.Model.DAO.Factory.pas"/>
+        <DCCReference Include="Model\Components\SimplePed.Model.Components.Interfaces.pas"/>
+        <DCCReference Include="Model\Components\SimplePed.Model.Components.FireDAC.pas"/>
+        <DCCReference Include="Model\Components\SimplePed.Model.Components.Factory.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

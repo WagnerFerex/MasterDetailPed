@@ -1,4 +1,4 @@
-unit SimplePed.Model.Entidade.Pedido;
+unit SimplePed.Model.Entidade.PEDIDO;
 
 interface
 
@@ -14,6 +14,7 @@ type
   public
     [Campo('ID_PEDIDO'), PK, AutoInc]
     property ID : Integer read FID write FID;
+
     [Campo('DATA')]
     property DATA : TDateTime read FDATA write FDATA;
   end;

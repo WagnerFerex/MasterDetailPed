@@ -40,11 +40,7 @@ uses
 function TControllerProduto.Buscar: iControllerProduto;
 begin
   Result := Self;
-
-  if Assigned(FList) then
-    FList.Free;
-
-  FList := FDAO.Find;
+  FDAO.Find();
 end;
 
 function TControllerProduto.Buscar(aId: Integer): iControllerProduto;
@@ -75,7 +71,7 @@ end;
 function TControllerProduto.DataSource(aDataSource: TDataSource): iControllerProduto;
 begin
   Result := Self;
-  FDAO.DataSource(aDataSource);
+  aDataSource.DataSet := FDAO.DataSet;
 end;
 
 function TControllerProduto.Delete: iControllerProduto;

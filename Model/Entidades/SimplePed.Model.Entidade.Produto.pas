@@ -1,4 +1,4 @@
-unit SimplePed.Model.Entidade.Produto;
+unit SimplePed.Model.Entidade.PRODUTO;
 
 interface
 
@@ -19,8 +19,10 @@ type
   public
     [Campo('ID_PRODUTO'), PK, AutoInc]
     property ID : Integer read FID write SetID;
+
     [Campo('DESCRICAO')]
     property DESCRICAO : String read GetDESCRICAO write SetDESCRICAO;
+
     [Campo('VALORUNITARIO')]
     property VALORUNITARIO : Currency read FVALORUNITARIO write SetVALORUNITARIO;
   end;

@@ -4,20 +4,17 @@ interface
 
 uses
   Data.DB, SimplePed.Model.Entidade.Pedido,
-  SimplePed.Model.Entidade.PedidoItens;
+  SimplePed.Model.Entidade.PedidoItens,
+  SimplePed.Model.DAO.Interfaces;
 
 type
   iControllerPedidoItens = interface;
 
   iControllerPedido = interface
     ['{8197E30B-2419-427E-896E-9A0AA0209030}']
-    function DataSource (aDataSource : TDataSource) : iControllerPedido;
-    function Buscar : iControllerPedido;
-    function Insert : iControllerPedido;
-    function Delete : iControllerPedido;
-    function Update : iControllerPedido;
-    function _This : TPEDIDO;
-    function Itens : iControllerPedidoItens;
+    function DataSource(AValue: TDataSource): iControllerPedido;
+    function DAO: iModelDAO<TPEDIDO>;
+    function ITENS : iControllerPedidoItens;
   end;
 
   iControllerPedidoItens = interface

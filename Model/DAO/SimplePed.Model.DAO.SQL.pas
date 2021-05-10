@@ -9,29 +9,24 @@ uses
   SimpleDAO,
   SimpleUtil,
   SimpleQueryFireDAC,
-  SimplePed.Model.DAO.Interfaces,
-  SimplePed.Model.Conexao.FireDAC;
+  SimplePed.Model.DAO.Interfaces;
 
 type
   TModelDAO<T: class, constructor> = class(TInterfacedObject, iModelDAO<T>)
   private
     FThis : T;
-    FNewThis : T;
-    FList : TObjectList<T>;
     FQueryFireDAC: iSimpleQuery;
     FSimpleDAO : iSimpleDAO<T>;
   public
     constructor Create;
     destructor Destroy; override;
     class function New: iModelDAO<T>;
-    function DataSource(ADataSource: TDataSource): iModelDAO<T>;
     function DataSet: TDataSet;
     function _This: T;
-    function _NewThis: T;
     function SQL : iSimpleDAOSQLAttribute<T>;
-    function Find: TObjectList<T>; overload;
+    function Find(AList: TObjectList<T>) : iModelDAO<T>; overload;
     function Find(Aid: Variant): T; overload;
-    function Find(Where: string; OrderBy: string = ''): TObjectList<T>; overload;
+    function Find(Where: string = ''; OrderBy: string = ''): TObjectList<T>; overload;
     function Insert: iModelDAO<T>; overload;
     function Update: iModelDAO<T>; overload;
     function Delete: iModelDAO<T>; overload;
@@ -44,22 +39,19 @@ implementation
 
 { TModelDAO<T> }
 
+uses
+  SimplePed.Model.Components.Factory;
+
 constructor TModelDAO<T>.Create;
 begin
-  FNewThis := T.Create;
-  FQueryFireDAC := TSimpleQueryFiredac.New(TDMFireDAC.GetInstance);
+  FThis := T.Create;
+  FQueryFireDAC := TModelComponentsFactory.New.SimpleQuery;
   FSimpleDAO := TSimpleDAO<T>.New(FQueryFireDAC);
 end;
 
 function TModelDAO<T>.DataSet: TDataSet;
 begin
   Result := FQueryFireDAC.DataSet;
-end;
-
-function TModelDAO<T>.DataSource(ADataSource: TDataSource): iModelDAO<T>;
-begin
-  Result := Self;
-  FSimpleDAO.DataSource(ADataSource);
 end;
 
 function TModelDAO<T>.Delete: iModelDAO<T>;
@@ -76,33 +68,29 @@ end;
 
 destructor TModelDAO<T>.Destroy;
 begin
-  if Assigned(FThis) then
-    FThis.Free;
-
-  if Assigned(FNewThis) then
-    FNewThis.Free;
-
+  FThis.DisposeOf;
   inherited;
 end;
 
 function TModelDAO<T>.Find(Aid: Variant): T;
 begin
-  FThis := FSimpleDAO.Find(Integer(AId));
-  Result := FThis;
+  Result := FSimpleDAO.Find(Integer(AId));
 end;
 
-function TModelDAO<T>.Find: TObjectList<T>;
+function TModelDAO<T>.Find(AList: TObjectList<T>): iModelDAO<T>;
 begin
-  FList := TObjectList<T>.Create;
-  FSimpleDAO.Find(FList);
-  Result := FList;
+  Result := Self;
+  FSimpleDAO.Find(AList);
 end;
 
 function TModelDAO<T>.Find(Where, OrderBy: string): TObjectList<T>;
 begin
-  FSimpleDAO.SQL.Where(Where).OrderBy(OrderBy);
-  FSimpleDAO.Find(FList);
-  Result := FList;
+  FSimpleDAO
+    .SQL
+      .Where(Where)
+      .OrderBy(OrderBy)
+    .&End
+    .Find;
 end;
 
 function TModelDAO<T>.Insert(aObject: T): iModelDAO<T>;
@@ -114,12 +102,7 @@ end;
 function TModelDAO<T>.Insert: iModelDAO<T>;
 begin
   Result := Self;
-  FSimpleDAO.Insert(FNewThis);
-
-  if Assigned(FNewThis) then
-    FNewThis.Free;
-
-  FNewThis := T.Create;
+  FSimpleDAO.Insert(FThis);
 end;
 
 class function TModelDAO<T>.New: iModelDAO<T>;
@@ -142,11 +125,6 @@ function TModelDAO<T>.Update: iModelDAO<T>;
 begin
   Result := Self;
   FSimpleDAO.Update(FThis);
-end;
-
-function TModelDAO<T>._NewThis: T;
-begin
-  Result := FNewThis;
 end;
 
 function TModelDAO<T>._This: T;
