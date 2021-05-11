@@ -68,7 +68,7 @@ begin
   Result := Self;
   FDataSource := AValue;
   FDataSource.DataSet := FDAO.DataSet;
-  FDataSource.OnDataChange := DataChance;
+//  FDataSource.OnDataChange := DataChance;
 end;
 
 destructor TControllerPedido.Destroy;

@@ -4,8 +4,8 @@ interface
 
 uses
   Vcl.Forms,
+  SimplePed.Model.Entidade.PRODUTO,
   SimplePed.Controller.Interfaces,
-  SimplePed.Controller.Produto.Interfaces,
   SimplePed.Controller.Pedido.Interfaces,
   SimplePed.Controller.Exceptions;
 
@@ -14,14 +14,14 @@ Type
   private
     FForm : TForm;
     FException : iControllerExceptions;
-    FProduto: iControllerProduto;
+    FProduto: iControllerGeneric<TPRODUTO>;
     FPedido: iControllerPedido;
     FPedidoItens: iControllerPedidoItens;
   public
     constructor Create(Form : TForm);
     destructor Destroy; override;
     class function New(Form : TForm): iController;
-    function Produto: iControllerProduto;
+    function Produto: iControllerGeneric<TPRODUTO>;
     function Pedido: iControllerPedido;
     function PedidoItens: iControllerPedidoItens;
   end;
@@ -29,9 +29,9 @@ Type
 implementation
 
 uses
-  SimplePed.Controller.Produto,
   SimplePed.Controller.Pedido,
-  SimplePed.Controller.PedidoItens;
+  SimplePed.Controller.PedidoItens,
+  SimplePed.Controller.Generic;
 
 { TController }
 
@@ -68,10 +68,10 @@ begin
   Result := FPedidoItens;
 end;
 
-function TSimplePedController.Produto: iControllerProduto;
+function TSimplePedController.Produto: iControllerGeneric<TPRODUTO>;
 begin
   if not Assigned(FProduto) then
-    FProduto := TControllerProduto.New;
+    FProduto := TControllerGeneric<TPRODUTO>.New;
 
   Result := FProduto;
 end;

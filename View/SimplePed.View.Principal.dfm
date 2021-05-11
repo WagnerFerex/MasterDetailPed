@@ -175,7 +175,6 @@ object Form6: TForm6
     TabOrder = 16
   end
   object DataSource1: TDataSource
-    OnDataChange = DataSource1DataChange
     Left = 616
     Top = 96
   end

@@ -4,6 +4,7 @@ interface
 
 uses
   Data.DB,
+  Vcl.Forms,
   System.Generics.Collections,
   SimpleInterface,
   SimplePed.Model.Entidade.Produto,
@@ -14,18 +15,17 @@ uses
 type
   iModelDAO<T: class, constructor> = interface
     ['{B08B6A07-2EF9-4D43-AF6F-9D38D9BB3678}']
-    function DataSet: TDataSet;
     function _This: T;
-    function SQL : iSimpleDAOSQLAttribute<T>;
-    function Find(AList: TObjectList<T>) : iModelDAO<T>; overload;
+    function Form(AForm: TForm): iModelDAO<T>;
+    function DataSet: TDataSet;
+    function DataSource(ADataSource: TDataSource): iModelDAO<T>;
+    function Delete: iModelDAO<T>;
+    function Find(AList: TObjectList<T>): iModelDAO<T>; overload;
     function Find(AId: Variant): T; overload;
-    function Find(Where: string = ''; OrderBy: string = ''): TObjectList<T>; overload;
-    function Insert: iModelDAO<T>; overload;
-    function Update: iModelDAO<T>; overload;
-    function Delete: iModelDAO<T>; overload;
-    function Insert(aObject: T): iModelDAO<T>; overload;
-    function Update(aObject: T): iModelDAO<T>; overload;
-    function Delete(aObject: T): iModelDAO<T>; overload;
+    function Find(Where: string = ''; OrderBy: string = ''): iModelDAO<T>; overload;
+    function Insert: iModelDAO<T>;
+    function SQL: iSimpleDAOSQLAttribute<T>;
+    function Update: iModelDAO<T>;
   end;
 
   iModelDAOFactory = interface

@@ -17,12 +17,16 @@ uses
   Vcl.Grids,
   Vcl.DBGrids,
   Vcl.DBCtrls,
+  SimpleAttributes,
   SimplePed.Controller.Interfaces;
 
 type
   TForm6 = class(TForm)
+    [Bind('ID_PRODUTO')]
     edtID: TEdit;
+    [Bind('DESCRICAO')]
     edtDESCRICAO: TEdit;
+    [Bind('VALORUNITARIO')]
     edtVALORUNITARIO: TEdit;
     DBGrid1: TDBGrid;
     Button1: TButton;
@@ -45,7 +49,6 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
-    procedure DataSource1DataChange(Sender: TObject; Field: TField);
     procedure Button4Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
@@ -69,39 +72,33 @@ uses
 
 procedure TForm6.Button1Click(Sender: TObject);
 begin
-  FController.Produto.Buscar;
+  FController.Produto.DAO.Form(Self).Find;
 end;
 
 procedure TForm6.Button2Click(Sender: TObject);
 begin
-  FController.Produto._This.DESCRICAO := edtDESCRICAO.Text;
-  FController.Produto._This.VALORUNITARIO := StrToCurr(edtVALORUNITARIO.Text);
-  FController.Produto.Insert.Buscar;
+  FController.Produto.DAO.Insert.Find;
 end;
 
 procedure TForm6.Button3Click(Sender: TObject);
 begin
-  FController.Produto._This.ID := StrToInt(edtID.Text);
-  FController.Produto._This.DESCRICAO := edtDESCRICAO.Text;
-  FController.Produto._This.VALORUNITARIO := StrToCurr(edtVALORUNITARIO.Text);
-  FController.Produto.Update.Buscar;
+  FController.Produto.DAO.Update.Find;
 end;
 
 procedure TForm6.Button4Click(Sender: TObject);
 begin
-  FController.Produto._This.ID := StrToInt(edtID.Text);
-  FController.Produto.Delete.Buscar;
+  FController.Produto.DAO.Delete.Find;
 end;
 
 procedure TForm6.Button5Click(Sender: TObject);
 begin
   with FController.Pedido.Itens.DAO._This do
   begin
-    ID_PEDIDO  := DataSource2.DataSet.FieldByName('ID_PEDIDO').AsInteger;
-    ID_PRODUTO := DataSource1.DataSet.FieldByName('ID_PRODUTO').AsInteger;
+    ID_PEDIDO     := DataSource2.DataSet.FieldByName('ID_PEDIDO').AsInteger;
+    ID_PRODUTO    := DataSource1.DataSet.FieldByName('ID_PRODUTO').AsInteger;
     VALORUNITARIO := DataSource1.DataSet.FieldByName('VALORUNITARIO').AsCurrency;
-    QUANTIDADE := StrToCurr(Edit1.Text);
-    VALORTOTAL := (VALORUNITARIO * QUANTIDADE);
+    QUANTIDADE    := StrToCurr(Edit1.Text);
+    VALORTOTAL    := (VALORUNITARIO * QUANTIDADE);
   end;
 
   FController
@@ -121,13 +118,6 @@ procedure TForm6.Button7Click(Sender: TObject);
 begin
   FController.Pedido.DAO._This.DATA := Now;
   FController.Pedido.DAO.Insert.Find;
-end;
-
-procedure TForm6.DataSource1DataChange(Sender: TObject; Field: TField);
-begin
-  edtID.Text := DataSource1.DataSet.FieldByName('ID_PRODUTO').AsString;
-  edtDESCRICAO.Text := DataSource1.DataSet.FieldByName('DESCRICAO').AsString;
-  edtVALORUNITARIO.Text := DataSource1.DataSet.FieldByName('VALORUNITARIO').AsString;
 end;
 
 procedure TForm6.FormCreate(Sender: TObject);
