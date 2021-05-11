@@ -19,14 +19,8 @@ type
 
   iControllerPedidoItens = interface
     ['{C2172D85-BAC8-4BC1-AA5B-43746D2CE7A3}']
-    function DataSource (aDataSource : TDataSource) : iControllerPedidoItens;
-    function Buscar : iControllerPedidoItens; overload;
-    function Buscar (aId : Integer) : iControllerPedidoItens; overload;
-    function Insert : iControllerPedidoItens;
-    function Delete : iControllerPedidoItens;
-    function Update : iControllerPedidoItens;
-    function DataSet : TDataSet;
-    function _This : TPEDIDOITENS;
+    function DataSource(AValue: TDataSource): iControllerPedidoItens;
+    function DAO: iModelDAO<TPEDIDOITENS>;
   end;
 
 implementation

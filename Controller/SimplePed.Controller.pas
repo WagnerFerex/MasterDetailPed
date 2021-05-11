@@ -3,11 +3,11 @@ unit SimplePed.Controller;
 interface
 
 uses
-  SimplePed.Controller.Interfaces, SimplePed.Controller.Produto.Interfaces,
-  SimplePed.Controller.Pedido.Interfaces, SimplePed.Controller.Exceptions,
   Vcl.Forms,
-  SimplePed.Model.DAO.Interfaces,
-  SimplePed.Model.Entidade.Produto;
+  SimplePed.Controller.Interfaces,
+  SimplePed.Controller.Produto.Interfaces,
+  SimplePed.Controller.Pedido.Interfaces,
+  SimplePed.Controller.Exceptions;
 
 Type
   TSimplePedController = class(TInterfacedObject, iController)
@@ -17,8 +17,6 @@ Type
     FProduto: iControllerProduto;
     FPedido: iControllerPedido;
     FPedidoItens: iControllerPedidoItens;
-
-    FProdutos: iModelDAO<TPRODUTO>;
   public
     constructor Create(Form : TForm);
     destructor Destroy; override;
@@ -26,7 +24,6 @@ Type
     function Produto: iControllerProduto;
     function Pedido: iControllerPedido;
     function PedidoItens: iControllerPedidoItens;
-    function DAOProduto : iModelDAO<TPRODUTO>;
   end;
 
 implementation
@@ -34,8 +31,7 @@ implementation
 uses
   SimplePed.Controller.Produto,
   SimplePed.Controller.Pedido,
-  SimplePed.Controller.PedidoItens,
-  SimplePed.Model.DAO.SQL;
+  SimplePed.Controller.PedidoItens;
 
 { TController }
 
@@ -43,14 +39,6 @@ constructor TSimplePedController.Create(Form : TForm);
 begin
   FForm := Form;
   FException := TControllerExceptions.New(FForm);
-end;
-
-function TSimplePedController.DAOProduto: iModelDAO<TPRODUTO>;
-begin
-  if not Assigned(FProdutos) then
-    FProdutos := TModelDAO<TPRODUTO>.New;
-
-  Result := FProdutos;
 end;
 
 destructor TSimplePedController.Destroy;

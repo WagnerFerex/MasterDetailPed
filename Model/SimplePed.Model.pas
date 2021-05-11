@@ -4,7 +4,8 @@ interface
 
 uses
   SimplePed.Model.Interfaces,
-  SimplePed.Model.DAO.Interfaces;
+  SimplePed.Model.DAO.Interfaces,
+  SimplePed.Model.Components.Interfaces;
 
 Type
   TSimplePedModel = class(TInterfacedObject, iModel)
@@ -14,6 +15,7 @@ Type
     destructor Destroy; override;
     class function New: iModel;
     function DAO: iModelDAOFactory;
+    function Components: iModelComponentsFactory;
   end;
 
 implementation
@@ -21,10 +23,17 @@ implementation
 { TSimplePedModel }
 
 uses
-  SimplePed.Model.DAO.Factory;
+  SimplePed.Model.DAO.Factory,
+  SimplePed.Model.Components.Factory;
+
+function TSimplePedModel.Components: iModelComponentsFactory;
+begin
+  Result := TModelComponentsFactory.New;
+end;
 
 constructor TSimplePedModel.Create;
 begin
+
 end;
 
 function TSimplePedModel.DAO: iModelDAOFactory;

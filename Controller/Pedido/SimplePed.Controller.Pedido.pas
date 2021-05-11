@@ -46,7 +46,21 @@ end;
 
 procedure TControllerPedido.DataChance(Sender: TObject; Field: TField);
 begin
-  FPedidoItens.Buscar(FDataSource.DataSet.FieldByName('ID_PEDIDO').AsInteger);
+  FPedidoItens
+    .DAO
+      .SQL
+        .Fields('PEDIDOITENS.ID_PEDIDOITENS AS ID,')
+        .Fields('PRODUTO.DESCRICAO AS PRODUTO,')
+        .Fields('PEDIDOITENS.QUANTIDADE AS QNT,')
+        .Fields('PEDIDOITENS.VALORUNITARIO AS UNITARIO,')
+        .Fields('PEDIDOITENS.VALORTOTAL AS TOTAL')
+        .Join('INNER JOIN PRODUTO ON PRODUTO.ID_PRODUTO = PEDIDOITENS.ID_PRODUTO')
+        .Where('ID_PEDIDO = ' + FDAO.DataSet.FieldByName('ID_PEDIDO').AsString)
+      .&End
+      .Find;
+
+  FPedidoItens.DAO.DataSet.FieldByName('ID').Visible := false;
+  FPedidoItens.DAO.DataSet.FieldByName('PRODUTO').DisplayWidth := 50;
 end;
 
 function TControllerPedido.DataSource(AValue: TDataSource): iControllerPedido;

@@ -29,6 +29,7 @@ type
     ['{F936D81B-0F66-402E-A28D-099EB9968863}']
     function Query: IModelComponentsQuery;
     function SimpleQuery: iSimpleQuery;
+    function Conn: TComponent;
   end;
 
 implementation

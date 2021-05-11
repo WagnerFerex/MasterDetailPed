@@ -36,8 +36,8 @@ uses
 
 function TPRODUTO.GetDESCRICAO: String;
 begin
-  if FDESCRICAO = '' then
-    raise TValidaCampo.Create('DESCRICAO', 'O Campo Descrição não pode ser Nulo');
+//  if FDESCRICAO = '' then
+//    raise TValidaCampo.Create('DESCRICAO', 'O Campo Descrição não pode ser Nulo');
 
   Result := FDESCRICAO;
 end;

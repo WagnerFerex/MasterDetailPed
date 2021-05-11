@@ -40,7 +40,7 @@ implementation
 { TModelDAO<T> }
 
 uses
-  SimplePed.Model.Components.Factory;
+  SimplePed.Model.Components.Factory, System.SysUtils;
 
 constructor TModelDAO<T>.Create;
 begin
@@ -85,12 +85,13 @@ end;
 
 function TModelDAO<T>.Find(Where, OrderBy: string): TObjectList<T>;
 begin
-  FSimpleDAO
-    .SQL
-      .Where(Where)
-      .OrderBy(OrderBy)
-    .&End
-    .Find;
+  if not Trim(Where).IsEmpty then
+    FSimpleDAO.SQL.Where(Where);
+
+  if not Trim(OrderBy).IsEmpty then
+    FSimpleDAO.SQL.OrderBy(OrderBy);
+
+  FSimpleDAO.Find;
 end;
 
 function TModelDAO<T>.Insert(aObject: T): iModelDAO<T>;

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2021/05/10 08:42:34.000.311,C:\projetos\MasterDetailPed\Model\Entidades\SimplePed.Model.Entidade.PRODUTO.pas=C:\projetos\MasterDetailPed\Model\Entidades\SimplePed.Model.Entidade._Produto.pas</Transaction>
+    <Transaction>2021/05/10 08:42:34.000.311,C:\projetos\MasterDetailPed\Model\Entidades\SimplePed.Model.Entidade._Produto.pas=C:\projetos\MasterDetailPed\Model\Entidades\SimplePed.Model.Entidade.PRODUTO.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="Controller"/>
@@ -21,9 +21,6 @@
     <File Path="Model\Components\SimplePed.Model.Components.Interfaces.pas"/>
     <File Path="Model\Components\SimplePed.Model.Components.FireDAC.pas"/>
     <File Path="Model\Components\SimplePed.Model.Components.Factory.pas"/>
-    <File Path="Model\Conexao"/>
-    <File Path="Model\Conexao\SimplePed.Model.Conexao.FireDAC.pas"/>
-    <File Path="Model\Conexao\SimplePed.Model.Conexao.FireDAC.dfm"/>
     <File Path="Model\DAO"/>
     <File Path="Model\DAO\SimplePed.Model.DAO.Factory.pas"/>
     <File Path="Model\DAO\SimplePed.Model.DAO.Interfaces.pas"/>

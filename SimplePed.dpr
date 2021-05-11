@@ -3,7 +3,6 @@ program SimplePed;
 uses
   Vcl.Forms,
   SimplePed.View.Principal in 'View\SimplePed.View.Principal.pas' {Form6},
-  SimplePed.Model.Conexao.FireDAC in 'Model\Conexao\SimplePed.Model.Conexao.FireDAC.pas' {DMFireDAC: TDataModule},
   SimplePed.Model.Entidade.PRODUTO in 'Model\Entidades\SimplePed.Model.Entidade.PRODUTO.pas',
   SimplePed.Model.Entidade.PEDIDO in 'Model\Entidades\SimplePed.Model.Entidade.PEDIDO.pas',
   SimplePed.Model.Entidade.PEDIDOITENS in 'Model\Entidades\SimplePed.Model.Entidade.PEDIDOITENS.pas',
@@ -30,7 +29,6 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TDMFireDAC, DMFireDAC);
   Application.CreateForm(TForm6, Form6);
   Application.Run;
 end.

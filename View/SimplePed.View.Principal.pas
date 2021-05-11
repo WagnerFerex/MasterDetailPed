@@ -95,12 +95,21 @@ end;
 
 procedure TForm6.Button5Click(Sender: TObject);
 begin
-  FController.Pedido.Itens._This.ID_PEDIDO  := DataSource2.DataSet.FieldByName('ID_PEDIDO').AsInteger;
-  FController.Pedido.Itens._This.ID_PRODUTO := DataSource1.DataSet.FieldByName('ID_PRODUTO').AsInteger;
-  FController.Pedido.Itens._This.VALORUNITARIO := DataSource1.DataSet.FieldByName('VALORUNITARIO').AsCurrency;
-  FController.Pedido.Itens._This.QUANTIDADE := StrToCurr(Edit1.Text);
-  FController.Pedido.Itens._This.VALORTOTAL := (FController.Pedido.Itens._This.VALORUNITARIO * FController.Pedido.Itens._This.QUANTIDADE);
-  FController.Pedido.Itens.Insert.Buscar(DataSource2.DataSet.FieldByName('ID_PEDIDO').AsInteger);
+  with FController.Pedido.Itens.DAO._This do
+  begin
+    ID_PEDIDO  := DataSource2.DataSet.FieldByName('ID_PEDIDO').AsInteger;
+    ID_PRODUTO := DataSource1.DataSet.FieldByName('ID_PRODUTO').AsInteger;
+    VALORUNITARIO := DataSource1.DataSet.FieldByName('VALORUNITARIO').AsCurrency;
+    QUANTIDADE := StrToCurr(Edit1.Text);
+    VALORTOTAL := (VALORUNITARIO * QUANTIDADE);
+  end;
+
+  FController
+    .Pedido
+    .Itens
+      .DAO
+        .Insert
+        .Find(DataSource2.DataSet.FieldByName('ID_PEDIDO').AsInteger);
 end;
 
 procedure TForm6.Button6Click(Sender: TObject);

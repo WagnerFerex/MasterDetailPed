@@ -45,11 +45,10 @@ type
   TModelComponentsFDQuery = class(TInterfacedObject, IModelComponentsQuery)
   private
     FDQuery1: TFDQuery;
-    FDConnection1: iModelComponentsConnection<TFDConnection>;
   public
-    constructor Create;
+    constructor Create(AConnection: TFDConnection);
     destructor Destroy; override;
-    class function New: IModelComponentsQuery;
+    class function New(AConnection: TFDConnection): IModelComponentsQuery;
     function Open: IModelComponentsQuery; overload;
     function Open(ASQL: string): IModelComponentsQuery; overload;
     function ExecSQL: IModelComponentsQuery;
@@ -68,11 +67,10 @@ begin
   FDQuery1.ParamByName(AParam).Value := AValue;
 end;
 
-constructor TModelComponentsFDQuery.Create(AConnection: TComponent);
+constructor TModelComponentsFDQuery.Create(AConnection: TFDConnection);
 begin
-  FDConnection1 := (AConnection as TFDConnection);
   FDQuery1 := TFDQuery.Create(nil);
-  FDQuery1.Connection := FDConnection1;
+  FDQuery1.Connection := AConnection;
 end;
 
 destructor TModelComponentsFDQuery.Destroy;
@@ -87,7 +85,7 @@ begin
   FDQuery1.ExecSQL;
 end;
 
-class function TModelComponentsFDQuery.New(AConnection: TComponent): IModelComponentsQuery;
+class function TModelComponentsFDQuery.New(AConnection: TFDConnection): IModelComponentsQuery;
 begin
   Result := Self.Create(AConnection);
 end;
@@ -118,7 +116,7 @@ end;
 
 { TModelComponentsFDConnection }
 
-function TModelComponentsFDConnection.Conn: TComponent;
+function TModelComponentsFDConnection.Conn: TFDConnection;
 begin
   Result := FDConnection1;
 end;
@@ -136,15 +134,15 @@ begin
   inherited;
 end;
 
-class function TModelComponentsFDConnection.New: IModelComponentsConnection;
+class function TModelComponentsFDConnection.New: IModelComponentsConnection<TFDConnection>;
 begin
   Result := Self.Create;
 end;
 
-function TModelComponentsFDConnection.Open(AParams: string): IModelComponentsConnection;
+function TModelComponentsFDConnection.Open(AParams: string): IModelComponentsConnection<TFDConnection>;
 begin
   Result := Self;
-  FDConnection1.Open(AParams);   // *** 'Database=..\..\DB\SimplePed.db;DriverID=SQLite' ***
+  FDConnection1.Open(AParams);
 end;
 
 end.

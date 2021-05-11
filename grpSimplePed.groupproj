@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{C602805E-D1D0-4A86-83E8-4DFBB0E396BF}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="SimplePed.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="SimplePedTest.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="SimplePed">
+        <MSBuild Projects="SimplePed.dproj"/>
+    </Target>
+    <Target Name="SimplePed:Clean">
+        <MSBuild Projects="SimplePed.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SimplePed:Make">
+        <MSBuild Projects="SimplePed.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SimplePedTest">
+        <MSBuild Projects="SimplePedTest.dproj"/>
+    </Target>
+    <Target Name="SimplePedTest:Clean">
+        <MSBuild Projects="SimplePedTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SimplePedTest:Make">
+        <MSBuild Projects="SimplePedTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="SimplePed;SimplePedTest"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="SimplePed:Clean;SimplePedTest:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="SimplePed:Make;SimplePedTest:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
