@@ -72,7 +72,7 @@ uses
 
 procedure TForm6.Button1Click(Sender: TObject);
 begin
-  FController.Produto.DAO.Form(Self).Find;
+  FController.Produto.DAO.Find;
 end;
 
 procedure TForm6.Button2Click(Sender: TObject);
@@ -123,10 +123,17 @@ end;
 procedure TForm6.FormCreate(Sender: TObject);
 begin
   ReportMemoryLeaksOnShutdown := True;
+
   FController := TSimplePedController.New(Self);
-  FController.Produto.DataSource(DataSource1);
-  FController.Pedido.DataSource(DataSource2);
-  FController.Pedido.Itens.DataSource(DataSource3);
+  FController
+    .Produto
+      .DataSource(DataSource1)
+      .BindForm(Self)
+    .&End
+    .Pedido
+      .DataSource(DataSource2)
+      .Itens
+        .DataSource(DataSource3);
 end;
 
 end.

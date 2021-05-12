@@ -3,6 +3,7 @@ unit SimplePed.Controller.Interfaces;
 interface
 
 uses
+  Vcl.Forms,
   Data.DB,
   SimplePed.Controller.Pedido.Interfaces,
   SimplePed.Model.DAO.Interfaces,
@@ -21,8 +22,10 @@ type
 
   iControllerGeneric<T: class, constructor> = interface
     ['{135DAAFC-C57A-42FC-9A2F-630E166E72C2}']
+    function BindForm(AForm: TForm): iControllerGeneric<T>;
     function DAO: IModelDAO<T>;
     function DataSource(AValue: TDataSource): iControllerGeneric<T>;
+    function &End: iController;
   end;
 
 implementation

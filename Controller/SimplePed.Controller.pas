@@ -71,7 +71,7 @@ end;
 function TSimplePedController.Produto: iControllerGeneric<TPRODUTO>;
 begin
   if not Assigned(FProduto) then
-    FProduto := TControllerGeneric<TPRODUTO>.New;
+    FProduto := TControllerGeneric<TPRODUTO>.New(Self);
 
   Result := FProduto;
 end;

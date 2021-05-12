@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2021/05/11 11:59:17.221,C:\projetos\MasterDetailPed\Controller\Pedido\SimplePed.Controller.Pedido.Interfaces.pas=</Transaction>
-    <Transaction>2021/05/11 12:02:16.972,=C:\projetos\MasterDetailPed\Controller\Pedido\SimplePed.Controller.Pedido.Interfaces.pas</Transaction>
-  </Transactions>
+	</Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="Controller"/>
     <File Path="Controller\Pedido"/>
@@ -16,9 +14,9 @@
     <File Path="Controller\SimplePed.Controller.Exceptions.pas"/>
     <File Path="Model"/>
     <File Path="Model\Components"/>
-    <File Path="Model\Components\SimplePed.Model.Components.Interfaces.pas"/>
-    <File Path="Model\Components\SimplePed.Model.Components.FireDAC.pas"/>
     <File Path="Model\Components\SimplePed.Model.Components.Factory.pas"/>
+    <File Path="Model\Components\SimplePed.Model.Components.FireDAC.pas"/>
+    <File Path="Model\Components\SimplePed.Model.Components.Interfaces.pas"/>
     <File Path="Model\DAO"/>
     <File Path="Model\DAO\SimplePed.Model.DAO.Factory.pas"/>
     <File Path="Model\DAO\SimplePed.Model.DAO.Interfaces.pas"/>

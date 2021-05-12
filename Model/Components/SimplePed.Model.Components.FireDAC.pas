@@ -33,7 +33,6 @@ type
   private
     FDConnection1: TFDConnection;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
-    FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink;
   public
     constructor Create;
     destructor Destroy; override;
@@ -123,6 +122,7 @@ end;
 
 constructor TModelComponentsFDConnection.Create;
 begin
+  FDGUIxWaitCursor1 := TFDGUIxWaitCursor.Create(nil);
   FDConnection1 := TFDConnection.Create(nil);
   FDConnection1.LoginPrompt := False;
 

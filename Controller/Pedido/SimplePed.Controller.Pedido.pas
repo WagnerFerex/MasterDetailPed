@@ -15,7 +15,7 @@ Type
     FDAO: iModelDAO<TPEDIDO>;
     FDataSource : TDataSource;
     FPedidoItens : iControllerPedidoItens;
-    procedure DataChance (Sender : TObject; Field : TField);
+    procedure DoDataChange(Sender: TObject; Field: TField);
   public
     constructor Create;
     destructor Destroy; override;
@@ -44,7 +44,7 @@ begin
   Result := FDAO;
 end;
 
-procedure TControllerPedido.DataChance(Sender: TObject; Field: TField);
+procedure TControllerPedido.DoDataChange(Sender: TObject; Field: TField);
 begin
   FPedidoItens
     .DAO
@@ -68,7 +68,7 @@ begin
   Result := Self;
   FDataSource := AValue;
   FDataSource.DataSet := FDAO.DataSet;
-//  FDataSource.OnDataChange := DataChance;
+  FDataSource.OnDataChange := DoDataChange;
 end;
 
 destructor TControllerPedido.Destroy;

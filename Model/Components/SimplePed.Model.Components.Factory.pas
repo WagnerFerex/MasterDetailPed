@@ -6,8 +6,7 @@ uses
   System.Classes,
   FireDAC.Comp.Client,
   SimplePed.Model.Components.Interfaces,
-  SimpleInterface,
-  SimpleQueryFireDAC;
+  SimpleInterface;
 
 type
   TModelComponentsFactory = class(TInterfacedObject, IModelComponentsFactory)
@@ -22,18 +21,19 @@ type
   end;
 
 var
-  FModelConnection: IModelComponentsConnection<TFDConnection>;
+  FDBConnection: IModelComponentsConnection<TFDConnection>;
 
 implementation
 
 uses
-  SimplePed.Model.Components.FireDAC;
+  SimplePed.Model.Components.FireDAC,
+  SimpleQueryFireDAC;
 
 { TModelComponentsFactory }
 
 function TModelComponentsFactory.Conn: TComponent;
 begin
-  Result := FModelConnection.Conn;
+  Result := FDBConnection.Conn;
 end;
 
 constructor TModelComponentsFactory.Create;
@@ -54,15 +54,15 @@ end;
 
 function TModelComponentsFactory.Query: IModelComponentsQuery;
 begin
-  Result := TModelComponentsFDQuery.New(FModelConnection.Conn);
+  Result := TModelComponentsFDQuery.New(FDBConnection.Conn);
 end;
 
 function TModelComponentsFactory.SimpleQuery: iSimpleQuery;
 begin
-  Result := TSimpleQueryFiredac.New(FModelConnection.Conn);
+  Result := TSimpleQueryFiredac.New(FDBConnection.Conn);
 end;
 
 initialization
-  FModelConnection := TModelComponentsFDConnection.New.Open('Database=..\..\DB\SimplePed.db;DriverID=SQLite');
+  FDBConnection := TModelComponentsFDConnection.New.Open('Database=..\..\DB\SimplePed.db;DriverID=SQLite');
 
 end.

@@ -20,10 +20,10 @@ type
     [Campo('ID_PRODUTO'), PK, AutoInc]
     property ID : Integer read FID write SetID;
 
-    [Campo('DESCRICAO')]
+    [Campo('DESCRICAO'), NotNull]
     property DESCRICAO : String read GetDESCRICAO write SetDESCRICAO;
 
-    [Campo('VALORUNITARIO')]
+    [Campo('VALORUNITARIO'), NotNull, NumberOnly]
     property VALORUNITARIO : Currency read FVALORUNITARIO write SetVALORUNITARIO;
   end;
 
@@ -36,8 +36,8 @@ uses
 
 function TPRODUTO.GetDESCRICAO: String;
 begin
-//  if FDESCRICAO = '' then
-//    raise TValidaCampo.Create('DESCRICAO', 'O Campo Descrição não pode ser Nulo');
+  if FDESCRICAO = '' then
+    raise TValidaCampo.Create('DESCRICAO', 'O Campo Descrição não pode ser Nulo');
 
   Result := FDESCRICAO;
 end;
